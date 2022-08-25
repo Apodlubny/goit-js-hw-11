@@ -63,10 +63,10 @@ function onLoadMoreBtn() {
       renderGallery(data.hits);
       simpleLightBox = new simpleLightbox('.gallery a').refresh();
 
-      const totalPages = Math.ceil(data.totalHits / perPage);
-      if (page > totalPages) {
-        loadMoreBtn.classList.add('.is-hidden');
+      //   const totalPages = Math.ceil(data.totalHits / perPage);
+      if (gallery.children.length >= data.totalHits) {
         alertEndOfSearch();
+        loadMoreBtn.classList.add('is-hidden');
       }
     })
     .catch(error => console.log(error));
@@ -87,7 +87,7 @@ function alertNoImagesFound() {
   );
 }
 function alertEndOfSearch() {
-  Notiflix.Notify.failure(
+  Notiflix.Notify.info(
     "We're sorry, but you've reached the end of search results."
   );
 }
